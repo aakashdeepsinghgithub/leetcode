@@ -1,8 +1,18 @@
-// Last updated: 6/21/2025, 5:40:49 PM
+// Last updated: 6/21/2025, 6:24:55 PM
 class Solution {
 
-    ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
+    ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>(); 
+    
+    public void callBFS(char[][] grid , int i, int j){ 
 
+        if(i<0 || i>=grid.length || j<0 || j>=grid[i].length || grid[i][j]=='0') return;
+
+        grid[i][j]='0';
+        callBFS(grid ,i+1,j);
+        callBFS(grid ,i-1,j);
+        callBFS(grid ,i,j+1);
+        callBFS(grid ,i,j-1);
+    }
 
     
     public int numIslands(char[][] grid) {
@@ -19,14 +29,4 @@ class Solution {
         return count;
     }
 
-    public void callBFS(char[][] grid , int i, int j){ 
-
-        if(i<0 || i>=grid.length || j<0 || j>=grid[i].length || grid[i][j]=='0') return;
-
-        grid[i][j]='0';
-        callBFS(grid ,i+1,j);
-        callBFS(grid ,i-1,j);
-        callBFS(grid ,i,j+1);
-        callBFS(grid ,i,j-1);
-    }
 }
