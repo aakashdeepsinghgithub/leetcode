@@ -1,4 +1,4 @@
-// Last updated: 6/25/2025, 11:48:38 AM
+// Last updated: 6/25/2025, 11:52:41 AM
 /*
 // Definition for a Node.
 class Node {
@@ -20,49 +20,30 @@ class Node {
 
 class Solution {
     public int maxDepth(Node root) {
-// if(root == null ) return 0;
+if(root == null ) return 0;
        
 
-//         Queue<Node> q = new LinkedList<>();
+        Queue<Node> q = new LinkedList<>();
 
-//         q.offer(root);
-//         int dept =0;
+        q.offer(root);
+        int dept =0;
 
-//         while(!q.isEmpty()){ 
-//             int size = q.size();
-//             for(int i=0 ; i<q.size();i++){
-//             Node current = q.poll();
-//             for(Node node : current.children){ 
-//                 q.offer(node);
-//             }
-//             }
-//             dept++;
-
-//         }
-//         return dept;
-
-
-        if (root == null) return 0;
-
-        Queue<Node> queue = new LinkedList<>();
-        queue.offer(root);
-        int depth = 0;
-
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-
-            for (int i = 0; i < size; i++) {
-                Node current = queue.poll();
-                if (current.children != null) {
-                    for (Node child : current.children) {
-                        queue.offer(child);
-                    }
-                }
+        while(!q.isEmpty()){ 
+            int size = q.size();
+            for(int i=0 ; i<size;i++){
+            Node current = q.poll();
+if(current.children!=null){
+            for(Node node : current.children){ 
+                q.offer(node);
             }
+}
+            }
+            dept++;
 
-            depth++;
         }
+        return dept;
 
-        return depth;
+
+         
     }
 }
