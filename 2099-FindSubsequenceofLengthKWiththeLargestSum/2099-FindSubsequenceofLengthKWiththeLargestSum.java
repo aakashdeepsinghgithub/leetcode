@@ -1,28 +1,26 @@
-// Last updated: 6/28/2025, 4:00:15 PM
-import java.util.*;
-
+// Last updated: 6/28/2025, 6:57:22 PM
 class Solution {
     public int[] maxSubsequence(int[] nums, int k) {
-        // Max Heap: store (value, index)
-        PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> b[0] - a[0]);
+        int n = nums.length;
+        if (k == n)
+            return nums;
 
-        for (int i = 0; i < nums.length; i++) {
-            maxHeap.offer(new int[]{nums[i], i});
+        // Pair: index and value
+        int[][] vec = new int[n][2];
+        for (int i = 0; i < n; i++) {
+            vec[i][0] = i;      // index
+            vec[i][1] = nums[i]; // value
         }
 
-        // Get top k elements
-        List<int[]> topK = new ArrayList<>();
-        for (int i = 0; i < k; i++) {
-            topK.add(maxHeap.poll());
-        }
+        // Sort by value descending
+        Arrays.sort(vec, (a, b) -> Integer.compare(b[1], a[1]));
 
-        // Sort by original index to keep subsequence order
-        topK.sort(Comparator.comparingInt(a -> a[1]));
+        // Then sort the top-k by original index to maintain order
+        Arrays.sort(vec, 0, k, Comparator.comparingInt(a -> a[0]));
 
-        // Extract only values
         int[] result = new int[k];
         for (int i = 0; i < k; i++) {
-            result[i] = topK.get(i)[0];
+            result[i] = vec[i][1];
         }
 
         return result;
