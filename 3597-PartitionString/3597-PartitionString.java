@@ -1,4 +1,4 @@
-// Last updated: 7/2/2025, 9:37:43 AM
+// Last updated: 7/2/2025, 9:45:35 AM
 import java.util.*;
 
 class Solution {
@@ -9,15 +9,15 @@ class Solution {
 
         for (char ch : s.toCharArray()) {
             current.append(ch);
-            if (!seen.contains(current.toString())) {
-                String segment = current.toString();
+            String segment = current.toString();
+            if (!seen.contains(segment)) {
+                
                 result.add(segment);
                 seen.add(segment);
                 current = new StringBuilder();  // Start a new segment
             }
         }
-
-        // If any remaining characters left in current (in case the last segment is seen before)
+ 
          
 
         return result;
