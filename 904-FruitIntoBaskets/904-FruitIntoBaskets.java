@@ -1,27 +1,27 @@
-// Last updated: 8/10/2025, 2:41:47 PM
+// Last updated: 8/13/2025, 10:23:28 PM
 class Solution {
     public int totalFruit(int[] fruits) {
 
-        HashMap<Integer,Integer> mp = new HashMap<>();
-        int i = 0;
-        int j = 0;
-        int n = fruits.length;
-        int ans = 0;
+         Map<Integer,Integer> basket = new HashMap<>();
 
-        while(j<n){
-            mp.put(fruits[j], mp.getOrDefault(fruits[j], 0) + 1);   
-            while(mp.size() > 2){
-                mp.put(fruits[i], mp.get(fruits[i]) - 1);   
-                if(mp.get(fruits[i]) == 0){
-                    mp.remove(fruits[i]);
+         int left =0;
+         int right = 0;
+         int max=0;
+         int n = fruits.length;
+
+         while(right<n){ 
+                basket.put(fruits[right],basket.getOrDefault(fruits[right],0)+1);
+            while(basket.size()>2){ 
+                basket.put(fruits[left],basket.get(fruits[left])-1);
+
+                if(basket.get(fruits[left]) == 0){ 
+                    basket.remove(fruits[left]);
                 }
-                i++;
+                left++;
             }
-            ans = Math.max(ans,j-i+1);
-            j++;
-
-        }
-        return ans;
-
+            max = Math.max(max,right-left+1);
+            right++;
+         }
+return max;
     }
 }
